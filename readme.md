@@ -36,12 +36,11 @@ Setup and Execution Steps:
 
 Go to the EC2 console on AWS and navigate to Key Pairs under the Network & Security section.
 
-Create a new key pair named sujith.pem. Download the .pem file as 
-you will use it to access the EC2 instances in the EMR cluster.
+Create a new key pair named sujith.pem. Download the .pem file as you will use it to access the EC2 instances in the EMR cluster.
 
 2. Create an S3 Bucket:
 
-![S3 Bucket](S3Bucket.png)
+![S3 Bucket](Images/S3Bucket.png)
 
 In the S3 console, create a new S3 bucket with the name wineprediction3 (or any name you prefer).
 
@@ -70,6 +69,8 @@ Use SSH to connect to the master node in the EMR cluster. Use the .pem file you 
 ssh -i "sujith.pem" ec2-user@<Master-Node-IP>
 This will open a terminal session in the master EC2 instance.
 
+![EMR-SSH](Images/EMR-SSH.jpeg)
+
 5. Upload Datasets to S3
 
 Upload the following files to your S3 bucket (wineprediction3/datasets):
@@ -92,6 +93,9 @@ spark-submit qualityprediction.py s3://wineprediction3/datasets/TrainingDataset.
 The qualityprediction.py script will train the machine learning model on the training dataset and validate it using the validation dataset.
 
 The training dataset will be split into 90% for training and 10% for testing. The test data will be saved as TestDataset.csv in the 
+
+![EMR-SSH](Images/Training.jpeg)
+
 S3 bucket:
 
 aws s3 cp TestDataset.csv s3://wineprediction3/datasets/
@@ -103,9 +107,13 @@ After training, save the model in your S3 bucket for later use:
 aws s3 cp wine_quality_model s3://wineprediction3/models/wine_quality_model
 
 8. Test the Model
+
+![Test](Images/Test.jpeg)
+
 To test the model, run the following command:
 
 spark-submit qualitytestPrediction.py s3://wineprediction3/datasets/TestDataset.csv s3://wineprediction3/models/wine_quality_model
+
 This will use the trained model to make predictions on the test dataset.
 
 9. Docker Integration
