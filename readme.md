@@ -92,11 +92,9 @@ spark-submit qualityprediction.py s3://wineprediction3/datasets/TrainingDataset.
 
 The qualityprediction.py script will train the machine learning model on the training dataset and validate it using the validation dataset.
 
-The training dataset will be split into 90% for training and 10% for testing. The test data will be saved as TestDataset.csv in the 
+The training dataset will be split into 90% for training and 10% for testing. The test data will be saved as TestDataset.csv in the S3 bucket:
 
 ![EMR-SSH](Images/Training.jpeg)
-
-S3 bucket:
 
 aws s3 cp TestDataset.csv s3://wineprediction3/datasets/
 
@@ -145,6 +143,7 @@ docker pull sujith345/predquilty
 Run the Docker Container:
 
 docker run --rm sujith345/predquilty /app/datasets/TestDataset.csv /app/models
+
 
 
 Conclusion:
