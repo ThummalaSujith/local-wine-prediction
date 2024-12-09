@@ -146,9 +146,11 @@ Run the Docker Container:
 
 docker run --rm sujith345/predquilty /app/datasets/TestDataset.csv /app/models
 
+
 Conclusion:
 
 Model Accuracy: 0.758
+
 F1 Score: 0.747
 
 The machine learning model was able to predict wine quality with a good level of accuracy. The project demonstrates the use of AWS EMR, PySpark, and Docker for scalable model training and deployment. Future work can include improving model performance by tuning hyperparameters and training with larger datasets
